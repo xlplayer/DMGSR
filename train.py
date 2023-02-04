@@ -65,7 +65,7 @@ def train_test(model, train_data, test_data, epoch, train_sessions):
                         lr = model.optimizer.state_dict()['param_groups'][0]['lr'])
             loss.backward()
             model.optimizer.step()
-            total_loss += loss
+            total_loss += loss.item()
     print('\tLoss:\t%.3f' % total_loss)
 
     model.scheduler.step()
