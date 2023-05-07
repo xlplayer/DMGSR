@@ -1,4 +1,4 @@
-dataset = 'Tmall'
+dataset = 'diginetica'
 num_node = 43098
 dim =256
 epoch = 10

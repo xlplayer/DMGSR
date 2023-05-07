@@ -83,6 +83,19 @@ class AugmentingDataset:
         index = create_index(self.sessions)  # columns: sessionId, labelIndex
         self.index = index
 
+    def get28(self):
+        fre = defaultdict(int)
+        for sess in self.sessions:
+            for item in sess:
+                fre[item] += 1
+        items = [x[0] for x in sorted(fre.items(), key=lambda x: x[1])]
+        split = int(len(items) * 0.8)
+        return set(items[:split]),  set(items[split:])
+
+    def set28(self, head_items, tail_items):
+        self.head_items = head_items
+        self.tail_items = tail_items
+        
     def __getitem__(self, idx):
         #print(idx)
         sid, lidx = self.index[idx]
